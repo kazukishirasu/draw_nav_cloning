@@ -8,7 +8,7 @@ import roslib
 class draw_training_node:
     def __init__(self):
         rospy.init_node("draw_node", anonymous=True)
-        self.path = roslib.packages.get_pkg_dir('nav_cloning') + '/data/analysis/'
+        self.path = roslib.packages.get_pkg_dir('draw_nav_cloning') + '/data/analysis/'
         self.path_pub = rospy.Publisher('move_base/DWAPlannerROS/local_plan', Path, queue_size=10)
         self.path_data = Path()
         self.path_data.header.frame_id = "map"

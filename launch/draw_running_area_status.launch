@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="map_file" default="$(find draw_nav_cloning)/maps/cit_3f_map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="script" default="draw_running_area_status.py"/>
+  
+  <node pkg="draw_nav_cloning" type="$(arg script)" name="draw_training_node" output="screen"/>
+
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
+  </group>
+</launch>
