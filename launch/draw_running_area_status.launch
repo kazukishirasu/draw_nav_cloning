@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="map_file" default="$(find draw_nav_cloning)/maps/cit_3f_map.yaml"/>
+  <arg name="map_file" default="$(find nav_cloning)/maps/willowgarage.yaml"/>
   <!-- <arg name="map_file" default="$(find nav_cloning)/maps/cit_3f_map.yaml"/> -->
   <arg name="open_rviz" default="true"/>
   <arg name="script" default="draw_running_area_status.py"/>

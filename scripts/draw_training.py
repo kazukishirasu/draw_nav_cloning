@@ -12,7 +12,7 @@ class draw_training_node:
     def __init__(self):
         rospy.init_node("draw_node", anonymous=True)
         # self.path = roslib.packages.get_pkg_dir('draw_nav_cloning') + '/data/analysis/'
-        self.path = roslib.packages.get_pkg_dir('nav_cloning') + '/data/analysis/change_dataset_balance/'
+        self.path = roslib.packages.get_pkg_dir('nav_cloning') + '/data/result_use_dl_output/20221213_00:51:03/'
         # self.path = roslib.packages.get_pkg_dir('nav_cloning') + '/data/analysis/use_dl_output/'
         self.path_pub = rospy.Publisher('move_base/DWAPlannerROS/local_plan', Path, queue_size=10)
         self.points1_pub = rospy.Publisher('point', MarkerArray, queue_size=10)
@@ -43,8 +43,8 @@ class draw_training_node:
                 x, y = float(str_x), float(str_y)
                 pose = PoseStamped()
                 pose.header.frame_id = "map"
-                pose.pose.position.x = x + 100
-                pose.pose.position.y = y + 100
+                pose.pose.position.x = x - 10.78
+                pose.pose.position.y = y - 16.78
                 self.pose_list[0].append(x)
                 self.pose_list[1].append(y)
                 if len(self.pose_list[0]) %7 == 4:
@@ -56,7 +56,7 @@ class draw_training_node:
         list_y = []
         list_count = []
         list_collision = []
-        with open(self.path + 'new2-3_1/trajectory.csv', 'r') as f:
+        with open(self.path + 'result/trajectory.csv', 'r') as f:
         # with open('/home/kiyooka/Downloads/first/trajectory.csv', 'r') as f:
             # is_first = True
             for row in csv.reader(f):
@@ -64,7 +64,7 @@ class draw_training_node:
                 #     is_first = False
                 #     continue
                 str_step, str_x, str_y, str_move_count, str_collision = row
-                step, x, y, move_count = int(str_step), float(str_x) + 100, float(str_y) + 100, int(str_move_count)
+                step, x, y, move_count = int(str_step), float(str_x) - 10.78, float(str_y) - 16.78, int(str_move_count)
                 list_step.append(step)
                 list_x.append(x)
                 list_y.append(y)
@@ -92,7 +92,7 @@ class draw_training_node:
                         point_marker.pose.orientation.y = 0.0
                         point_marker.pose.orientation.z = 0.0
                         point_marker.pose.orientation.w = 1.0
-                        point_marker.color.r = 0.0
+                        point_marker.color.r = 255.0
                         point_marker.color.g = 0.0
                         point_marker.color.b = 0.0
                         point_marker.id = self.points1_count

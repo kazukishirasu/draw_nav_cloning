@@ -12,7 +12,7 @@ RADIUS = 0.03
 class draw_training_node:
     def __init__(self):
         rospy.init_node("draw_node", anonymous=True)
-        self.path = roslib.packages.get_pkg_dir('nav_cloning') + '/data/analysis/change_dataset_balance/'
+        self.path = roslib.packages.get_pkg_dir('nav_cloning') + '/data/result_use_dl_output/20221213_00:51:03/'
         # self.path = roslib.packages.get_pkg_dir('nav_cloning') + '/data/analysis/use_dl_output/'
         self.path_pub = rospy.Publisher('move_base/DWAPlannerROS/local_plan', Path, queue_size=10)
         self.points1_pub = rospy.Publisher('point1', MarkerArray, queue_size=10)
@@ -70,7 +70,7 @@ class draw_training_node:
         self.points6.markers = []
         num = 0
 
-        with open(self.path + 'new2-3_1/score.csv', 'r') as f:
+        with open(self.path + 'result/score.csv', 'r') as f:
         # with open('/home/kiyooka/Downloads/first/score.csv', 'r') as f:
             for row in csv.reader(f):
                 if (num+1) %7 != 4:
